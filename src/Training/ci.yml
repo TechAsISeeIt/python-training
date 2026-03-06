@@ -1,0 +1,45 @@
+name: Python CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install pytest black ruff mypy
+
+      # Step 4: Run formatter check
+      - name: Check formatting (Black)
+        run: black --check .
+
+      # Step 5: Run linter
+      - name: Run Ruff linter
+        run: ruff check .
+
+      # Step 6: Type checking
+      - name: Run mypy
+        run: mypy .
+
+      # Step 7: Run tests
+      - name: Run tests
+        run: pytest
