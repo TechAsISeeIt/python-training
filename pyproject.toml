@@ -1,6 +1,11 @@
-[Training]
-name = "my_training"
-version = "1.0.0"
+[project]
+name = "async-api-cli"
+version = "0.1.0"
+description = "Project for Python Training"
+authors = [{name="Your Name"}]
 dependencies = [
-    "requests==2.32.5"
+    "httpx", "requests"
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
