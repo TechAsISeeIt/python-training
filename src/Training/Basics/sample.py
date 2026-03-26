@@ -1,4 +1,4 @@
-def sum(a: float, b: float) -> float | None:
+def sum(a: float | None, b: float | None) -> float | None:
     """
     sum is a function that takes two float arguments and returns their sum.
 
@@ -18,6 +18,7 @@ def sum(a: float, b: float) -> float | None:
         return a + b
     except TypeError:
         print("Error: Both arguments must be of type float")
+        return None
 
 
 def read_binary_file(
@@ -93,7 +94,7 @@ def read_lines(
     """
     try:
         with open(
-            file_path, "r"
+            file_path
         ) as f:  # Using a context manager to ensure the file is properly closed after reading
             for line in f:  # Iterating through each line in the file
                 print(
@@ -125,7 +126,7 @@ def read_file(
         str: Returns the contents of the file as a string
     """
     with open(
-        file_path, "r"
+        file_path
     ) as file:  # Using a context manager to ensure the file is properly closed after reading
         data = (
             file.read()
