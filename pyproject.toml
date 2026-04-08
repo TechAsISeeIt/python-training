@@ -32,4 +32,9 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["."]
+pythonpath = ["src"]
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = ["src"]
+explicit_package_bases = true

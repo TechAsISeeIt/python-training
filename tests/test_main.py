@@ -1,5 +1,5 @@
 import pytest
-from src.Training.Basics.static_types_check import add, get_length
+from Training.Basics.static_types_check import add, get_length
 
 # ---------- Tests for add ----------
 
@@ -35,7 +35,7 @@ def test_get_length_single_character():
 
 def test_get_length_empty_string():
     result = get_length("")
-    assert result is None
+    assert result == {"length": 0, 1: ""}
 
 
 def test_get_length_none_input():

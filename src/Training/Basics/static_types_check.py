@@ -3,13 +3,9 @@ def add(a: int, b: int) -> int:
 
 
 def get_length(s: str) -> dict[str | int, int | str] | None:
-    try:
-        if not s:
-            raise ValueError("Input must be a string")
-        return {"length": len(s), 1: s}
-    except ValueError as e:
-        print("Error:", e)
-        return None
+    if not isinstance(s, str):
+        raise TypeError("Input must be a string")
+    return {"length": len(s), 1: s}
 
 
 if __name__ == "__main__":
