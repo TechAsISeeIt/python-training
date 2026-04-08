@@ -1,10 +1,32 @@
 [project]
-name = "async-api-cli"
+name = "python-training"
 version = "0.1.0"
-description = "Project for Python Training"
-authors = [{name="Your Name"}]
+description = "Your project"
+authors = [{ name = "Uday" }]
+requires-python = ">=3.11"
+
 dependencies = [
-    "httpx", "requests"
+    "fastapi",
+    "uvicorn",
+    "requests",
+    "pandas",
+    "numpy",
+    "pyspark",
+    "duckdb",
+    "polars",
+    "ray",
+    "PyYAML",
+    "scikit-learn",
+    "transformers",
+    "sentence-transformers"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "ruff",
+    "mypy"
 ]
 
 [tool.pytest.ini_options]
