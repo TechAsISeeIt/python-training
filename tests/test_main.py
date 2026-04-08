@@ -1,7 +1,6 @@
 import pytest
 from src.Training.Basics.static_types_check import add, get_length
 
-
 # ---------- Tests for add ----------
 
 
