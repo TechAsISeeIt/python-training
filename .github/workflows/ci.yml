@@ -22,25 +22,32 @@ jobs:
           python-version: "3.11"
           cache: pip
 
-      # Step 3: Install dependencies
+      # Step 3: Fix requirements.txt encoding (self-healing)
+      - name: Normalize requirements encoding
+        run: |
+          if file requirements.txt | grep -q "UTF-16"; then
+            echo "Converting requirements.txt from UTF-16 to UTF-8"
+            iconv -f utf-16 -t utf-8 requirements.txt -o requirements.txt
+          fi
+
+      # Step 4: Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest black ruff mypy
+          pip install -r requirements.txt pytest black ruff mypy
 
-      # Step 4: Run formatter check
+      # Step 5: Check formatting
       - name: Check formatting (Black)
         run: black --check .
 
-      # Step 5: Run linter
+      # Step 6: Lint
       - name: Run Ruff linter
         run: ruff check .
 
-      # Step 6: Run tests
+      # Step 7: Run tests
       - name: Run tests
-        run: pytest
+        run: pytest --maxfail=1 --disable-warnings -q
 
-      # Step 7: Type checking
+      # Step 8: Type checking
       - name: Run mypy
         run: mypy .
