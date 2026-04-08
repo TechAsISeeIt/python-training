@@ -1,4 +1,7 @@
 import sqlite3 as sql
+import os
+
+db_path = os.path.join(os.path.dirname(__file__), "..", "sampledata", "student.db")
 
 # import pyodbc - this for hosted database connections
 
@@ -23,7 +26,7 @@ if __name__ == "__main__":
     sys
     admin@123
     """
-    conn = sql.connect("student.db")
+    conn = sql.connect(db_path)
 
     # Get Cursor from connection
     cursor = conn.cursor()

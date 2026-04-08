@@ -6,8 +6,11 @@ from deps import verify_token, rate_limiter, verify_basic_auth
 
 import sqlite3 as sql
 import httpx
+import os
 
 app = FastAPI(title="ETL API", version="1.0")
+
+db_path = os.path.join(os.path.dirname(__file__), "..", "sampledata", "student.db")
 
 # ✅ CORS Configuration
 app.add_middleware(
@@ -20,7 +23,7 @@ app.add_middleware(
 
 
 def get_db():
-    conn = sql.connect("student.db")
+    conn = sql.connect(db_path)
     return conn
 
 
