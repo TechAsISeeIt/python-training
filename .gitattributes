@@ -1,2 +1,1 @@
-*.txt text eol=lf
-*.txt working-tree-encoding=UTF-8
+*.py text eol=lf working-tree-encoding=UTF-8
